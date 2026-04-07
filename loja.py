@@ -15,28 +15,39 @@ def home():
             }
 
             .topo {
-                background:#ff69b4;
-                padding:40px;
+                background:linear-gradient(90deg,#ff69b4,#ff85c1);
+                padding:50px;
                 text-align:center;
                 color:white;
+                box-shadow:0 5px 20px rgba(0,0,0,0.2);
             }
 
+            h1 { margin:0; }
+            h2 { text-align:center; }
+
+            /* GALERIA */
             .galeria {
                 overflow:hidden;
-                width:100%;
+                height:400px;
                 margin-top:20px;
             }
 
             .slider {
                 display:flex;
                 flex-direction:column;
-                animation: subir 20s linear infinite;
+                animation: subir 25s linear infinite;
             }
 
             .slider img {
-                width:300px;
+                width:280px;
                 margin:10px auto;
-                border-radius:12px;
+                border-radius:15px;
+                transition:0.3s;
+                box-shadow:0 5px 15px rgba(0,0,0,0.2);
+            }
+
+            .slider img:hover {
+                transform:scale(1.05);
             }
 
             @keyframes subir {
@@ -44,30 +55,46 @@ def home():
                 100% { transform: translateY(-100%); }
             }
 
+            /* SERVIÇOS */
             .servicos {
                 display:flex;
                 flex-wrap:wrap;
                 justify-content:center;
-                gap:20px;
-                padding:20px;
+                gap:25px;
+                padding:30px;
             }
 
             .card {
                 background:white;
                 padding:20px;
-                border-radius:12px;
+                border-radius:15px;
                 width:250px;
-                box-shadow:0 2px 10px rgba(0,0,0,0.1);
+                box-shadow:0 10px 20px rgba(0,0,0,0.1);
+                transition:0.3s;
             }
 
-            .botao {
+            .card:hover {
+                transform:translateY(-5px);
+            }
+
+            /* BOTÃO WHATSAPP FIXO */
+            .whats {
+                position:fixed;
+                bottom:20px;
+                right:20px;
                 background:#25D366;
                 color:white;
-                padding:15px 30px;
-                border-radius:10px;
+                padding:15px 20px;
+                border-radius:50px;
                 text-decoration:none;
                 font-size:18px;
+                box-shadow:0 5px 15px rgba(0,0,0,0.3);
             }
+
+            .whats:hover {
+                transform:scale(1.1);
+            }
+
         </style>
     </head>
 
@@ -78,7 +105,7 @@ def home():
             <p>Realçando sua beleza com cílios perfeitos 💖</p>
         </div>
 
-        <h2 style="text-align:center;margin-top:20px;">Resultados</h2>
+        <h2>Resultados</h2>
 
         <div class="galeria">
             <div class="slider">
@@ -93,7 +120,7 @@ def home():
             </div>
         </div>
 
-        <h2 style="text-align:center;">Nossos Serviços</h2>
+        <h2>Nossos Serviços</h2>
 
         <div class="servicos">
 
@@ -127,11 +154,10 @@ def home():
 
         </div>
 
-        <div style="text-align:center;padding:40px;">
-            <a href="https://wa.me/5511964532697?text=Olá quero agendar um horário" class="botao">
-                💬 Agendar pelo WhatsApp
-            </a>
-        </div>
+        <!-- BOTÃO FLUTUANTE -->
+        <a href="https://wa.me/5511964532697?text=Olá quero agendar um horário" class="whats">
+            💬 WhatsApp
+        </a>
 
     </body>
     </html>
