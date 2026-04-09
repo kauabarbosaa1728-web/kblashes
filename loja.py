@@ -14,43 +14,90 @@ def bio():
             body {
                 margin:0;
                 font-family:Arial;
-                background:#fff;
                 text-align:center;
+                color:white;
+
+                background-size:cover;
+                background-position:center;
+                animation: fundo 12s infinite;
+            }
+
+            /* 🔥 FUNDO COM FOTOS */
+            @keyframes fundo {
+                0% { background-image: url('https://i.postimg.cc/8crDvCph/02e0fb9f-b793-44fa-a92e-f0aa4b288d82.jpg'); }
+                33% { background-image: url('https://i.postimg.cc/ZY9yHF0V/3b395467_be8b_418d_bb64_be5d02e7009b.jpg'); }
+                66% { background-image: url('https://i.postimg.cc/fTNTdxdZ/31c710da_433e_4dff_8b83_92d9cdf145aa.jpg'); }
+            }
+
+            /* 🔥 ROSA POR CIMA */
+            body::before {
+                content:"";
+                position:fixed;
+                width:100%;
+                height:100%;
+                background:linear-gradient(180deg, rgba(255,20,147,0.5), rgba(255,105,180,0.5));
+                top:0;
+                left:0;
+                z-index:-1;
             }
 
             .perfil {
-                padding:30px;
+                padding:40px 20px;
             }
 
             .perfil img {
                 width:120px;
                 height:120px;
                 border-radius:50%;
-                object-fit:cover;
+                border:3px solid white;
             }
 
             .nome {
-                font-size:22px;
+                font-size:24px;
                 font-weight:bold;
                 margin-top:10px;
             }
 
             .desc {
-                color:#777;
-                margin-bottom:20px;
+                margin-bottom:10px;
             }
 
+            /* 🔥 FRASES */
+            .frase {
+                font-size:14px;
+                font-weight:bold;
+                margin:5px;
+            }
+
+            /* 🔥 BOTÕES */
             .link {
                 display:block;
-                margin:10px auto;
-                width:80%;
-                max-width:300px;
-                padding:15px;
-                background:#ff4da6;
+                margin:12px auto;
+                width:85%;
+                max-width:320px;
+                padding:16px;
+                background:linear-gradient(90deg,#ff4da6,#ff1493);
                 color:white;
                 text-decoration:none;
-                border-radius:10px;
+                border-radius:12px;
                 font-size:16px;
+                box-shadow:0 5px 20px rgba(0,0,0,0.4);
+                transition:0.2s;
+            }
+
+            .link:hover {
+                transform:scale(1.05);
+            }
+
+            /* 🔥 BOTÃO PISCANDO */
+            .link:first-of-type {
+                animation: pulse 1.5s infinite;
+            }
+
+            @keyframes pulse {
+                0% { transform:scale(1); }
+                50% { transform:scale(1.07); }
+                100% { transform:scale(1); }
             }
 
         </style>
@@ -62,14 +109,18 @@ def bio():
             <img src="https://i.postimg.cc/8crDvCph/02e0fb9f-b793-44fa-a92e-f0aa4b288d82.jpg">
             <div class="nome">💖 KB Lashes</div>
             <div class="desc">Extensão de cílios | Beleza feminina ✨</div>
+
+            <div class="frase">🔥 Vagas limitadas hoje</div>
+            <div class="frase">💖 Realce seu olhar em minutos</div>
+            <div class="frase">✨ Atendimento profissional</div>
         </div>
 
-        <a class="link" href="https://wa.me/5511964532697?text=Quero agendar">
-            📲 Agendar Horário
+        <a class="link" href="https://wa.me/5511964532697?text=Quero agendar agora">
+            📲 AGENDAR AGORA
         </a>
 
         <a class="link" href="/servicos">
-            💅 Ver Serviços
+            💅 VER SERVIÇOS
         </a>
 
     </body>
