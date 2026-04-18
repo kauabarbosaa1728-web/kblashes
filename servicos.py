@@ -28,7 +28,7 @@ def servicos():
         if arquivo.endswith((".png", ".jpg", ".jpeg")):
             frase = frases[i % len(frases)]
             imagens_html += f"""
-            <div class="card">
+            <div class="card" onclick="abrirImagem('/static/{arquivo}')">
                 <img src="/static/{arquivo}">
                 <div class="texto">{frase}</div>
             </div>
@@ -48,6 +48,11 @@ def servicos():
         💬 AGENDAR AGORA
     </a>
 
+    <!-- 🔥 MODAL (imagem grande) -->
+    <div id="modal" onclick="fecharImagem()">
+        <img id="imgModal">
+    </div>
+
     <style>
 
     body {{
@@ -57,20 +62,22 @@ def servicos():
     .feed {{
         display:flex;
         flex-direction:column;
-        gap:20px;
-        padding:20px;
+        gap:15px;
+        padding:15px;
     }}
 
     .card {{
         position:relative;
         width:100%;
+        cursor:pointer;
     }}
 
+    /* 🔥 TAMANHO MENOR (AJUSTADO) */
     .card img {{
         width:100%;
-       height:300px;
+        height:300px;
         object-fit:cover;
-        border-radius:20px;
+        border-radius:15px;
     }}
 
     .texto {{
@@ -79,11 +86,11 @@ def servicos():
         left:10px;
         right:10px;
         color:white;
-        font-size:18px;
+        font-size:16px;
         font-weight:bold;
         background:rgba(0,0,0,0.5);
-        padding:10px;
-        border-radius:10px;
+        padding:8px;
+        border-radius:8px;
     }}
 
     .botao {{
@@ -100,6 +107,37 @@ def servicos():
         font-weight:bold;
     }}
 
+    /* 🔥 MODAL */
+    #modal {{
+        display:none;
+        position:fixed;
+        top:0;
+        left:0;
+        width:100%;
+        height:100%;
+        background:rgba(0,0,0,0.9);
+        justify-content:center;
+        align-items:center;
+        z-index:999;
+    }}
+
+    #modal img {{
+        max-width:90%;
+        max-height:90%;
+        border-radius:15px;
+    }}
+
     </style>
+
+    <script>
+    function abrirImagem(src) {{
+        document.getElementById("modal").style.display = "flex";
+        document.getElementById("imgModal").src = src;
+    }}
+
+    function fecharImagem() {{
+        document.getElementById("modal").style.display = "none";
+    }}
+    </script>
 
     """)
