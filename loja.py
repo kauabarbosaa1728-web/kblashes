@@ -22,14 +22,12 @@ def bio():
                 animation: fundo 12s infinite;
             }
 
-            /* 🔥 FUNDO COM FOTOS */
             @keyframes fundo {
                 0% { background-image: url('https://i.postimg.cc/8crDvCph/02e0fb9f-b793-44fa-a92e-f0aa4b288d82.jpg'); }
                 33% { background-image: url('https://i.postimg.cc/ZY9yHF0V/3b395467_be8b_418d_bb64_be5d02e7009b.jpg'); }
                 66% { background-image: url('https://i.postimg.cc/fTNTdxdZ/31c710da_433e_4dff_8b83_92d9cdf145aa.jpg'); }
             }
 
-            /* 🔥 ROSA POR CIMA */
             body::before {
                 content:"";
                 position:fixed;
@@ -129,29 +127,38 @@ def bio():
     """
 
 
-# 🔥 SUA LOJA / SERVIÇOS (PREÇOS)
+# 🔥 VALORES MELHORADOS
 @loja_bp.route("/valores")
 def valores():
     return """
     <html>
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
         <style>
 
             body {
                 margin:0;
                 font-family:Arial;
-                background:#fff;
-            }
-
-            .topo {
-                background:#ff4da6;
-                padding:30px;
-                text-align:center;
+                background:#0f0f0f;
                 color:white;
             }
 
-            h2 { text-align:center; }
+            .topo {
+                background:linear-gradient(90deg,#ff4da6,#ff1493);
+                padding:30px;
+                text-align:center;
+                font-size:24px;
+                font-weight:bold;
+            }
+
+            .sub {
+                text-align:center;
+                margin:10px;
+                color:#ccc;
+                font-size:14px;
+            }
 
             .servicos {
                 display:flex;
@@ -162,28 +169,41 @@ def valores():
             }
 
             .card {
-                background:white;
+                background:#1a1a1a;
                 padding:20px;
                 border-radius:15px;
-                width:250px;
-                box-shadow:0 5px 15px rgba(0,0,0,0.1);
+                width:260px;
+                box-shadow:0 5px 20px rgba(0,0,0,0.5);
                 text-align:center;
+                transition:0.3s;
+            }
+
+            .card:hover {
+                transform:scale(1.05);
+            }
+
+            .desc {
+                font-size:13px;
+                color:#bbb;
+                margin-bottom:10px;
             }
 
             .preco {
                 color:#ff4da6;
                 font-weight:bold;
-                font-size:18px;
+                font-size:20px;
+                margin:10px 0;
             }
 
             .botao {
                 display:inline-block;
                 margin-top:10px;
-                background:#ff4da6;
+                background:linear-gradient(90deg,#ff4da6,#ff1493);
                 color:white;
                 padding:10px 15px;
                 border-radius:10px;
                 text-decoration:none;
+                font-weight:bold;
             }
 
         </style>
@@ -192,38 +212,47 @@ def valores():
     <body>
 
         <div class="topo">
-            <h1>💰 Nossos Valores</h1>
+            💰 Nossos Valores
+        </div>
+
+        <div class="sub">
+            ✨ Realce seu olhar com qualidade e profissionalismo 💖
         </div>
 
         <div class="servicos">
 
             <div class="card">
                 <h3>Designer de sobrancelhas</h3>
-                <p class="preco">R$ 40,00</p>
+                <div class="desc">✨ Definição perfeita para o seu rosto</div>
+                <div class="preco">R$ 40,00</div>
                 <a href="https://wa.me/5511964532697?text=Quero designer" class="botao">Agendar</a>
             </div>
 
             <div class="card">
                 <h3>Hidra Gloss</h3>
-                <p class="preco">R$ 25,00</p>
+                <div class="desc">💖 Lábios hidratados e com brilho natural</div>
+                <div class="preco">R$ 25,00</div>
                 <a href="https://wa.me/5511964532697?text=Quero Hidra Gloss" class="botao">Agendar</a>
             </div>
 
             <div class="card">
                 <h3>Extensão Brasileiro</h3>
-                <p class="preco">R$ 120,00</p>
+                <div class="desc">🔥 Volume leve e natural</div>
+                <div class="preco">R$ 120,00</div>
                 <a href="https://wa.me/5511964532697?text=Quero Brasileiro" class="botao">Agendar</a>
             </div>
 
             <div class="card">
                 <h3>Extensão Fox</h3>
-                <p class="preco">R$ 160,00</p>
+                <div class="desc">👑 Efeito alongado e marcante</div>
+                <div class="preco">R$ 160,00</div>
                 <a href="https://wa.me/5511964532697?text=Quero Fox" class="botao">Agendar</a>
             </div>
 
             <div class="card">
                 <h3>Extensão Egípcio</h3>
-                <p class="preco">R$ 140,00</p>
+                <div class="desc">🌸 Olhar sofisticado e elegante</div>
+                <div class="preco">R$ 140,00</div>
                 <a href="https://wa.me/5511964532697?text=Quero Egípcio" class="botao">Agendar</a>
             </div>
 
