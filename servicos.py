@@ -68,7 +68,7 @@ def servicos():
 
     .card img {{
         width:100%;
-        height:400px;
+       height:300px;
         object-fit:cover;
         border-radius:20px;
     }}
