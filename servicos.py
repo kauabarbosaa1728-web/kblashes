@@ -8,6 +8,7 @@ def servicos():
     return container("""
 
     <h2 style="text-align:center;">✨ Nossos Trabalhos</h2>
+    <p style="text-align:center;">Veja alguns resultados reais 💖</p>
 
     <div class="galeria">
 
@@ -17,6 +18,10 @@ def servicos():
         <img src="/static/cilios4.jpg">
 
     </div>
+
+    <a href="https://wa.me/55SEUNUMERO" class="botao">
+        💬 AGENDAR PELO WHATSAPP
+    </a>
 
     <style>
     .galeria {
@@ -30,10 +35,24 @@ def servicos():
         width: 100%;
         border-radius: 15px;
         transition: 0.3s;
+        cursor: pointer;
     }
 
     .galeria img:hover {
         transform: scale(1.05);
+    }
+
+    .botao {
+        display: block;
+        margin: 20px auto;
+        background: #ff2d7a;
+        color: white;
+        padding: 12px;
+        text-align: center;
+        border-radius: 10px;
+        text-decoration: none;
+        width: 80%;
+        font-weight: bold;
     }
     </style>
 
