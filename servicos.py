@@ -12,10 +12,10 @@ def servicos():
 
     <div class="galeria">
 
-        <img src="/static/cilios1.jpg">
-        <img src="/static/cilios2.jpg">
-        <img src="/static/cilios3.jpg">
-        <img src="/static/cilios4.jpg">
+        <img src="/static/cilios1.png">
+        <img src="/static/cilios2.png">
+        <img src="/static/cilios3.png">
+        <img src="/static/cilios4.png">
 
     </div>
 
