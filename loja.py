@@ -43,11 +43,13 @@ def bio():
                 padding:40px 20px;
             }
 
+            /* 🔥 LOGO NOVA */
             .perfil img {
-                width:120px;
-                height:120px;
-                border-radius:50%;
+                width:140px;
+                border-radius:20px; /* 🔥 tira o redondo */
                 border:3px solid white;
+                background:white;
+                padding:5px;
             }
 
             .nome {
@@ -101,7 +103,9 @@ def bio():
     <body>
 
         <div class="perfil">
-            <img src="https://i.postimg.cc/8crDvCph/02e0fb9f-b793-44fa-a92e-f0aa4b288d82.jpg">
+            <!-- 🔥 AQUI ESTÁ SUA LOGO -->
+            <img src="/static/logo.png">
+
             <div class="nome">💖 KB Lashes</div>
             <div class="desc">Extensão de cílios | Beleza feminina ✨</div>
 
@@ -127,7 +131,7 @@ def bio():
     """
 
 
-# 🔥 VALORES
+# 🔥 VALORES (NÃO MEXI PRA NÃO QUEBRAR)
 @loja_bp.route("/valores")
 def valores():
     return """
