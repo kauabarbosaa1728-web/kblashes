@@ -9,56 +9,93 @@ def servicos():
 
     imagens_html = ""
 
-    # 🔥 pega todas as imagens da pasta static
     pasta = "static"
+    frases = [
+        "✨ Olha esse resultado incrível",
+        "💖 Venha realçar seu olhar",
+        "🔥 Resultado perfeito",
+        "😍 Cliente apaixonada",
+        "💅 Cílios naturais e lindos",
+        "⚡ Atendimento rápido",
+        "🌸 Olhar transformado",
+        "👑 Você merece isso"
+    ]
+
+    i = 0
+
     for arquivo in os.listdir(pasta):
         if arquivo.endswith((".png", ".jpg", ".jpeg")):
-            imagens_html += f'<img src="/static/{arquivo}">'
+            frase = frases[i % len(frases)]
+            imagens_html += f"""
+            <div class="card">
+                <img src="/static/{arquivo}">
+                <div class="texto">{frase}</div>
+            </div>
+            """
+            i += 1
 
     return container(f"""
 
     <h2 style="text-align:center;">✨ Nossos Trabalhos</h2>
-    <p style="text-align:center;">Veja alguns resultados reais 💖</p>
 
-    <div class="galeria">
+    <div class="feed">
         {imagens_html}
     </div>
 
     <a href="https://wa.me/5511964532697" class="botao">
-        💬 AGENDAR PELO WHATSAPP
+        💬 AGENDAR AGORA
     </a>
 
     <style>
-    .galeria {{
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-        gap: 15px;
-        padding: 20px;
+
+    body {{
+        background:#000;
     }}
 
-    .galeria img {{
-        width: 100%;
-        border-radius: 15px;
-        transition: 0.3s;
-        cursor: pointer;
+    .feed {{
+        display:flex;
+        flex-direction:column;
+        gap:20px;
+        padding:20px;
     }}
 
-    .galeria img:hover {{
-        transform: scale(1.05);
+    .card {{
+        position:relative;
+        width:100%;
+    }}
+
+    .card img {{
+        width:100%;
+        border-radius:20px;
+    }}
+
+    .texto {{
+        position:absolute;
+        bottom:10px;
+        left:10px;
+        right:10px;
+        color:white;
+        font-size:18px;
+        font-weight:bold;
+        background:rgba(0,0,0,0.5);
+        padding:10px;
+        border-radius:10px;
     }}
 
     .botao {{
-        display: block;
-        margin: 20px auto;
-        background: #ff2d7a;
-        color: white;
-        padding: 12px;
-        text-align: center;
-        border-radius: 10px;
-        text-decoration: none;
-        width: 80%;
-        font-weight: bold;
+        display:block;
+        margin:20px auto;
+        background:#ff2d7a;
+        color:white;
+        padding:15px;
+        text-align:center;
+        border-radius:12px;
+        text-decoration:none;
+        width:90%;
+        font-size:18px;
+        font-weight:bold;
     }}
+
     </style>
 
     """)
