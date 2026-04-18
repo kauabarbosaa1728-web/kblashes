@@ -10,6 +10,7 @@ def servicos():
     imagens_html = ""
 
     pasta = "static"
+
     frases = [
         "✨ Olha esse resultado incrível",
         "💖 Venha realçar seu olhar",
@@ -37,6 +38,7 @@ def servicos():
     return container(f"""
 
     <h2 style="text-align:center;">✨ Nossos Trabalhos</h2>
+    <p style="text-align:center;">Veja alguns resultados reais 💖</p>
 
     <div class="feed">
         {imagens_html}
@@ -66,6 +68,8 @@ def servicos():
 
     .card img {{
         width:100%;
+        height:400px;
+        object-fit:cover;
         border-radius:20px;
     }}
 
