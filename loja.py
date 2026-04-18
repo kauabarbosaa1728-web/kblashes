@@ -62,14 +62,12 @@ def bio():
                 margin-bottom:10px;
             }
 
-            /* 🔥 FRASES */
             .frase {
                 font-size:14px;
                 font-weight:bold;
                 margin:5px;
             }
 
-            /* 🔥 BOTÕES */
             .link {
                 display:block;
                 margin:12px auto;
@@ -89,7 +87,6 @@ def bio():
                 transform:scale(1.05);
             }
 
-            /* 🔥 BOTÃO PISCANDO */
             .link:first-of-type {
                 animation: pulse 1.5s infinite;
             }
@@ -123,14 +120,18 @@ def bio():
             💅 VER SERVIÇOS
         </a>
 
+        <a class="link" href="/valores">
+            💰 VER VALORES
+        </a>
+
     </body>
     </html>
     """
 
 
-# 🔥 SUA LOJA / SERVIÇOS
-@loja_bp.route("/servicos")
-def servicos():
+# 🔥 SUA LOJA / SERVIÇOS (PREÇOS)
+@loja_bp.route("/valores")
+def valores():
     return """
     <html>
     <head>
@@ -191,7 +192,7 @@ def servicos():
     <body>
 
         <div class="topo">
-            <h1>💅 Nossos Serviços</h1>
+            <h1>💰 Nossos Valores</h1>
         </div>
 
         <div class="servicos">
