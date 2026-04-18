@@ -110,7 +110,7 @@ def bio():
             <div class="frase">✨ Atendimento profissional</div>
         </div>
 
-        <a class="link" href="https://wa.me/5511964532697?text=Quero agendar agora">
+        <a class="link" href="https://wa.me/5511964532697?text=Oi%2C%20quero%20agendar%20um%20hor%C3%A1rio.%20Quais%20dias%20e%20hor%C3%A1rios%20voc%C3%AA%20tem%20dispon%C3%ADveis%3F">
             📲 AGENDAR AGORA
         </a>
 
@@ -127,7 +127,7 @@ def bio():
     """
 
 
-# 🔥 VALORES MELHORADOS
+# 🔥 VALORES
 @loja_bp.route("/valores")
 def valores():
     return """
@@ -225,35 +225,35 @@ def valores():
                 <h3>Designer de sobrancelhas</h3>
                 <div class="desc">✨ Definição perfeita para o seu rosto</div>
                 <div class="preco">R$ 40,00</div>
-                <a href="https://wa.me/5511964532697?text=Quero designer" class="botao">Agendar</a>
+                <a href="https://wa.me/5511964532697?text=Oi%2C%20quero%20agendar%20um%20hor%C3%A1rio.%20Quais%20dias%20e%20hor%C3%A1rios%20voc%C3%AA%20tem%20dispon%C3%ADveis%3F" class="botao">Agendar</a>
             </div>
 
             <div class="card">
                 <h3>Hidra Gloss</h3>
                 <div class="desc">💖 Lábios hidratados e com brilho natural</div>
                 <div class="preco">R$ 25,00</div>
-                <a href="https://wa.me/5511964532697?text=Quero Hidra Gloss" class="botao">Agendar</a>
+                <a href="https://wa.me/5511964532697?text=Oi%2C%20quero%20agendar%20um%20hor%C3%A1rio.%20Quais%20dias%20e%20hor%C3%A1rios%20voc%C3%AA%20tem%20dispon%C3%ADveis%3F" class="botao">Agendar</a>
             </div>
 
             <div class="card">
                 <h3>Extensão Brasileiro</h3>
                 <div class="desc">🔥 Volume leve e natural</div>
                 <div class="preco">R$ 120,00</div>
-                <a href="https://wa.me/5511964532697?text=Quero Brasileiro" class="botao">Agendar</a>
+                <a href="https://wa.me/5511964532697?text=Oi%2C%20quero%20agendar%20um%20hor%C3%A1rio.%20Quais%20dias%20e%20hor%C3%A1rios%20voc%C3%AA%20tem%20dispon%C3%ADveis%3F" class="botao">Agendar</a>
             </div>
 
             <div class="card">
                 <h3>Extensão Fox</h3>
                 <div class="desc">👑 Efeito alongado e marcante</div>
                 <div class="preco">R$ 160,00</div>
-                <a href="https://wa.me/5511964532697?text=Quero Fox" class="botao">Agendar</a>
+                <a href="https://wa.me/5511964532697?text=Oi%2C%20quero%20agendar%20um%20hor%C3%A1rio.%20Quais%20dias%20e%20hor%C3%A1rios%20voc%C3%AA%20tem%20dispon%C3%ADveis%3F" class="botao">Agendar</a>
             </div>
 
             <div class="card">
                 <h3>Extensão Egípcio</h3>
                 <div class="desc">🌸 Olhar sofisticado e elegante</div>
                 <div class="preco">R$ 140,00</div>
-                <a href="https://wa.me/5511964532697?text=Quero Egípcio" class="botao">Agendar</a>
+                <a href="https://wa.me/5511964532697?text=Oi%2C%20quero%20agendar%20um%20hor%C3%A1rio.%20Quais%20dias%20e%20hor%C3%A1rios%20voc%C3%AA%20tem%20dispon%C3%ADveis%3F" class="botao">Agendar</a>
             </div>
 
         </div>
