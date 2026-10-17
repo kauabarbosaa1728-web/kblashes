@@ -22,6 +22,7 @@ def bio():
 <meta name="theme-color" content="#552c3a">
 <meta name="description" content="KB Lashes: extensão de cílios e beleza feminina. Agende seu horário.">
 <title>KB Lashes | Beleza & Sofisticação</title>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Great+Vibes&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
@@ -463,49 +464,68 @@ body::after {
     }
 }
 
-@media(max-width:600px) {
+/* CELULARES */
+@media (max-width: 600px) {
+
     body::before {
-        background-position: 68% center;
+        background-position: 69% center;
+        background-size: cover;
     }
 
     .pagina {
-        padding: 17px 11px;
+        min-height: 100dvh;
+        padding: 20px 12px;
+        align-items: center;
     }
 
     .painel {
-        max-width: 440px;
-        padding: 27px 17px;
-        border-radius: 28px;
+        width: 100%;
+        max-width: 420px;
+        padding: 25px 19px 27px;
+        border-radius: 29px;
         background: linear-gradient(
-            150deg,
-            rgba(94,37,51,.7),
-            rgba(54,17,30,.84),
-            rgba(94,37,51,.73)
+            155deg,
+            rgba(105,40,55,.64),
+            rgba(55,18,31,.82),
+            rgba(110,44,60,.68)
         );
+        border: 1px solid rgba(255,209,190,.85);
+        box-shadow:
+            0 0 24px rgba(255,150,170,.28),
+            0 18px 55px rgba(35,8,20,.38),
+            inset 0 0 18px rgba(255,196,183,.09);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
     }
 
     .painel::before {
-        border-radius: 23px;
+        border-radius: 24px;
     }
 
     .logo {
-        width: 115px;
-        height: 115px;
+        width: 108px;
+        height: 108px;
+        border-radius: 23px;
+        box-shadow:
+            0 0 0 4px rgba(255,198,187,.16),
+            0 0 25px rgba(255,175,177,.48);
     }
 
     .nome {
+        margin-top: 17px;
         gap: 8px;
     }
 
     .nome-kb {
-        font-size: clamp(42px,12vw,60px);
+        font-size: clamp(43px,12vw,60px);
     }
 
     .nome-lashes {
-        font-size: clamp(50px,13vw,67px);
+        font-size: clamp(49px,13vw,68px);
     }
 
     .subtitulo {
+        margin: 7px 0 24px;
         font-size: 10px;
         letter-spacing: 2px;
         gap: 8px;
@@ -513,32 +533,46 @@ body::after {
 
     .subtitulo::before,
     .subtitulo::after {
-        width: 19px;
+        width: 20px;
+    }
+
+    .beneficios {
+        margin-bottom: 26px;
     }
 
     .beneficio {
+        padding: 5px 4px;
         font-size: 10px;
-        padding: 5px;
+        line-height: 1.5;
     }
 
     .icone-beneficio {
         width: 43px;
         height: 43px;
-        font-size: 22px;
+        margin-bottom: 9px;
+        font-size: 21px;
+        box-shadow: 0 0 13px rgba(255,147,161,.3);
+    }
+
+    .botoes {
+        gap: 13px;
     }
 
     .botao {
-        min-height: 69px;
-        padding: 10px 13px;
+        min-height: 70px;
+        padding: 10px 12px;
+        border-radius: 40px;
     }
 
     .botao-icone {
         width: 35px;
+        height: 38px;
         font-size: 22px;
     }
 
     .botao-titulo {
         font-size: 14px;
+        letter-spacing: .2px;
     }
 
     .botao-sub {
@@ -547,17 +581,116 @@ body::after {
     }
 
     .seta {
-        width: 29px;
-        height: 29px;
+        width: 28px;
+        height: 28px;
         font-size: 20px;
     }
 
+    .coroa {
+        font-size: 24px;
+        margin-bottom: -5px;
+    }
+
+    .rodape {
+        margin-top: 25px;
+    }
+
     .assinatura {
-        font-size: 30px;
+        font-size: 29px;
+        margin-top: 8px;
+    }
+
+    .ornamento {
+        font-size: 21px;
+    }
+
+    .ornamento::before,
+    .ornamento::after {
+        width: 48px;
+    }
+
+    .brilho {
+        font-size: 15px;
     }
 }
 
-@media(prefers-reduced-motion:reduce) {
+/* CELULARES PEQUENOS */
+@media (max-width: 360px) {
+
+    .painel {
+        padding: 21px 12px;
+    }
+
+    .nome-kb {
+        font-size: 40px;
+    }
+
+    .nome-lashes {
+        font-size: 47px;
+    }
+
+    .beneficio {
+        font-size: 9px;
+    }
+
+    .botao-titulo {
+        font-size: 12px;
+    }
+
+    .botao-sub {
+        font-size: 7px;
+    }
+
+    .assinatura {
+        font-size: 26px;
+    }
+}
+
+/* TELAS COM POUCA ALTURA */
+@media (max-height: 700px) and (max-width: 600px) {
+
+    .pagina {
+        align-items: flex-start;
+        padding-top: 12px;
+        padding-bottom: 12px;
+    }
+
+    .painel {
+        padding-top: 18px;
+        padding-bottom: 18px;
+    }
+
+    .logo {
+        width: 90px;
+        height: 90px;
+    }
+
+    .nome {
+        margin-top: 9px;
+    }
+
+    .subtitulo {
+        margin-bottom: 15px;
+    }
+
+    .beneficios {
+        margin-bottom: 16px;
+    }
+
+    .botao {
+        min-height: 61px;
+    }
+
+    .botoes {
+        gap: 9px;
+    }
+
+    .rodape {
+        margin-top: 17px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
     .painel,
     .agendar,
     .brilho {
@@ -668,7 +801,7 @@ body::after {
 """
 
 
-# PÁGINA DE VALORES
+# PÁGINA DE VALORES ORIGINAL
 @loja_bp.route("/valores")
 def valores():
     cards = [
