@@ -1,5 +1,6 @@
 
 from flask import Blueprint
+from html import escape
 
 loja_bp = Blueprint("loja", __name__)
 
@@ -13,15 +14,14 @@ WHATSAPP = (
 
 @loja_bp.route("/")
 def bio():
-    return """
-<!DOCTYPE html>
+    return """<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#542b37">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#552c3a">
+<meta name="description" content="KB Lashes: extensão de cílios e beleza feminina. Agende seu horário.">
 <title>KB Lashes | Beleza & Sofisticação</title>
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Great+Vibes&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
@@ -40,9 +40,8 @@ body {
     min-height: 100vh;
     min-height: 100dvh;
     font-family: 'DM Sans', Arial, sans-serif;
-    color: #fff0eb;
-    background: #542b37;
-    position: relative;
+    color: #ffe9e2;
+    background: #552c3a;
     isolation: isolate;
 }
 
@@ -51,16 +50,14 @@ body::before {
     position: fixed;
     inset: 0;
     z-index: -2;
-    background-image:
+    background:
         linear-gradient(
             90deg,
-            rgba(48,18,28,.15),
-            rgba(65,25,37,.30) 50%,
-            rgba(48,18,28,.08)
+            rgba(50,17,28,.12),
+            rgba(48,16,28,.22),
+            rgba(50,17,28,.10)
         ),
-        url('/static/fundo-luxo.jpg');
-    background-size: cover;
-    background-position: center;
+        url('/static/fundo-luxo.jpg') center/cover no-repeat;
 }
 
 body::after {
@@ -68,12 +65,12 @@ body::after {
     position: fixed;
     inset: 0;
     z-index: -1;
+    pointer-events: none;
     background: linear-gradient(
         180deg,
-        rgba(30,12,19,.10),
-        rgba(30,12,19,.20)
+        rgba(38,12,21,.08),
+        rgba(38,12,21,.19)
     );
-    pointer-events: none;
 }
 
 .pagina {
@@ -82,159 +79,387 @@ body::after {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 35px 18px;
+    padding: 34px 16px;
 }
 
 .painel {
+    position: relative;
+    isolation: isolate;
     width: 100%;
-    max-width: 510px;
-    padding: 28px 32px 32px;
+    max-width: 570px;
+    padding: 35px 39px 33px;
     text-align: center;
-    background: rgba(58,27,37,.43);
-    border: 1px solid rgba(255,220,211,.25);
-    border-radius: 30px;
-    box-shadow: 0 20px 65px rgba(25,8,14,.28);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    animation: aparecer .8s ease both;
+    border-radius: 37px;
+    border: 1px solid rgba(255,204,190,.85);
+    background: linear-gradient(
+        150deg,
+        rgba(114,48,59,.55),
+        rgba(54,17,30,.76) 57%,
+        rgba(109,43,58,.57)
+    );
+    box-shadow:
+        0 25px 85px rgba(40,9,21,.42),
+        0 0 25px rgba(255,150,161,.18),
+        inset 0 0 27px rgba(255,193,176,.08);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    animation: entrada .8s ease both;
+    overflow: hidden;
+}
+
+.painel::before {
+    content: "";
+    position: absolute;
+    inset: 4px;
+    border: 1px solid rgba(255,211,193,.25);
+    border-radius: 32px;
+    pointer-events: none;
+}
+
+.painel::after {
+    content: "";
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    top: -105px;
+    right: -70px;
+    background: radial-gradient(
+        circle,
+        rgba(255,188,179,.25),
+        transparent 70%
+    );
+    pointer-events: none;
 }
 
 .logo {
-    width: 130px;
-    height: 130px;
+    position: relative;
+    width: 145px;
+    height: 145px;
     object-fit: cover;
-    border-radius: 23px;
-    padding: 5px;
-    background: rgba(255,239,231,.95);
-    border: 2px solid #ffe1d6;
-    box-shadow: 0 8px 30px rgba(0,0,0,.24);
+    border-radius: 28px;
+    padding: 6px;
+    background: #ffe9e3;
+    border: 2px solid #fff0e7;
+    box-shadow:
+        0 0 0 5px rgba(255,189,178,.15),
+        0 0 30px rgba(255,177,172,.45),
+        0 12px 35px rgba(30,9,18,.3);
 }
 
 .nome {
-    margin: 15px 0 3px;
+    margin: 20px 0 3px;
     display: flex;
-    justify-content: center;
     align-items: baseline;
-    gap: 10px;
+    justify-content: center;
+    gap: 12px;
     white-space: nowrap;
 }
 
 .nome-kb {
     font-family: 'Playfair Display', Georgia, serif;
-    font-size: clamp(42px,8vw,60px);
+    font-size: clamp(53px,8vw,77px);
     font-weight: 500;
-    color: #ffe5d8;
+    line-height: 1.2;
+    color: #ffe6d6;
+    text-shadow: 0 3px 14px rgba(255,181,158,.32);
 }
 
 .nome-lashes {
     font-family: 'Great Vibes', cursive;
-    font-size: clamp(48px,9vw,70px);
+    font-size: clamp(59px,9vw,84px);
     font-weight: 400;
-    color: #ff99b5;
+    line-height: 1.2;
+    color: #ff99b9;
+    text-shadow: 0 0 17px rgba(255,115,161,.35);
 }
 
 .subtitulo {
-    font-size: 11px;
-    line-height: 1.9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin: 8px 0 28px;
+    font-size: 12px;
     letter-spacing: 4px;
+    line-height: 1.9;
     text-transform: uppercase;
-    margin: 3px 0 24px;
-    color: #ffe1d8;
+    color: #ffe2d9;
+}
+
+.subtitulo::before,
+.subtitulo::after {
+    content: "";
+    width: 40px;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        #ffc8b7
+    );
+}
+
+.subtitulo::after {
+    transform: rotate(180deg);
 }
 
 .beneficios {
     display: grid;
     grid-template-columns: repeat(3,1fr);
-    margin-bottom: 25px;
+    gap: 0;
+    margin: 0 0 31px;
 }
 
 .beneficio {
-    padding: 5px 9px;
-    font-size: 11px;
+    padding: 6px 10px;
+    font-size: 12px;
     line-height: 1.5;
-    color: #ffe3de;
+    color: #ffe5df;
 }
 
 .beneficio + .beneficio {
-    border-left: 1px solid rgba(255,218,210,.35);
+    border-left: 1px solid rgba(255,210,197,.43);
 }
 
-.beneficio span {
-    display: block;
-    font-size: 23px;
-    margin-bottom: 7px;
+.icone-beneficio {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 51px;
+    height: 51px;
+    margin: 0 auto 10px;
+    border-radius: 50%;
+    font-size: 26px;
+    background: linear-gradient(
+        145deg,
+        rgba(255,174,188,.23),
+        rgba(255,213,194,.07)
+    );
+    border: 1px solid rgba(255,198,182,.75);
+    box-shadow:
+        0 0 14px rgba(255,147,161,.24),
+        inset 0 0 12px rgba(255,202,194,.1);
 }
 
 .botoes {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 14px;
 }
 
 .botao {
+    position: relative;
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 12px;
+    justify-content: space-between;
     width: 100%;
-    min-height: 57px;
+    min-height: 79px;
+    padding: 12px 19px;
     border-radius: 50px;
-    padding: 13px 18px;
     text-decoration: none;
-    font-weight: 700;
-    font-size: 14px;
-    letter-spacing: .4px;
-    transition: transform .25s, box-shadow .25s;
+    border: 2px solid rgba(255,236,225,.85);
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease;
 }
 
 .botao:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 9px 25px rgba(0,0,0,.25);
+    transform: translateY(-4px) scale(1.015);
+}
+
+.botao:focus-visible {
+    outline: 3px solid white;
+    outline-offset: 4px;
+}
+
+.botao-icone {
+    width: 47px;
+    height: 47px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    flex-shrink: 0;
+}
+
+.botao-texto {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    gap: 4px;
+    text-align: center;
+}
+
+.botao-titulo {
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: .4px;
+}
+
+.botao-sub {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.seta {
+    width: 34px;
+    height: 34px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    border-radius: 50%;
+    font-size: 24px;
+    border: 1px solid currentColor;
 }
 
 .agendar {
     color: white;
-    background: linear-gradient(90deg,#ff4b98,#f71e81);
-    border: 1px solid #ff90ba;
-    box-shadow: 0 5px 20px rgba(255,40,125,.35);
+    background: linear-gradient(
+        100deg,
+        #ff4698,
+        #fa147d 55%,
+        #ff328e
+    );
+    box-shadow:
+        0 0 19px rgba(255,34,126,.55),
+        0 9px 25px rgba(255,27,110,.28),
+        inset 0 2px 8px rgba(255,255,255,.28);
+    animation: pulsar 2.8s ease-in-out infinite;
+}
+
+.agendar:hover {
+    box-shadow:
+        0 0 30px rgba(255,43,137,.8),
+        0 12px 32px rgba(255,30,115,.45);
 }
 
 .servicos {
-    color: #783e4b;
-    background: linear-gradient(90deg,#ffc1ce,#fa8ca9);
-    border: 1px solid #ffd1db;
+    color: #793849;
+    background: linear-gradient(
+        100deg,
+        #ffc3cf,
+        #ff94ac 65%,
+        #f5a1b3
+    );
+    box-shadow:
+        0 0 15px rgba(255,181,186,.38),
+        0 8px 20px rgba(46,12,23,.2),
+        inset 0 2px 8px rgba(255,255,255,.45);
 }
 
 .valores {
-    color: #783e4b;
-    background: linear-gradient(90deg,#fff0e9,#ffd6dc);
-    border: 1px solid #fff0ed;
+    color: #793849;
+    background: linear-gradient(
+        100deg,
+        #fff2e8,
+        #ffd6dc 65%,
+        #ffe7e3
+    );
+    box-shadow:
+        0 0 15px rgba(255,226,210,.4),
+        0 8px 20px rgba(46,12,23,.2),
+        inset 0 2px 8px rgba(255,255,255,.55);
+}
+
+.coroa {
+    margin: -9px auto -4px;
+    color: #ffd0a4;
+    font-size: 27px;
+    z-index: 1;
+    filter: drop-shadow(0 0 8px #ffb07e);
 }
 
 .rodape {
-    margin-top: 25px;
-    color: #ffd9d4;
+    margin-top: 30px;
+    color: #ffdbd5;
 }
 
 .ornamento {
-    font-size: 20px;
-    color: #ffb5c8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+    font-size: 24px;
+    color: #ffc2ce;
+}
+
+.ornamento::before,
+.ornamento::after {
+    content: "";
+    width: 67px;
+    height: 1px;
+    background: rgba(255,209,197,.55);
 }
 
 .assinatura {
+    margin-top: 10px;
     font-family: 'Great Vibes', cursive;
-    font-size: 30px;
-    margin-top: 5px;
+    font-size: 36px;
+    line-height: 1.3;
+    color: #ffe4d9;
+    text-shadow: 0 0 12px rgba(255,173,176,.3);
 }
 
-@keyframes aparecer {
+.brilho {
+    position: absolute;
+    color: #ffcabd;
+    font-size: 19px;
+    pointer-events: none;
+    animation: cintilar 3s ease-in-out infinite;
+}
+
+.brilho-1 {
+    top: 12%;
+    left: 7%;
+}
+
+.brilho-2 {
+    top: 27%;
+    right: 8%;
+    animation-delay: 1s;
+}
+
+.brilho-3 {
+    bottom: 12%;
+    left: 8%;
+    animation-delay: 2s;
+}
+
+@keyframes entrada {
     from {
         opacity: 0;
-        transform: translateY(18px);
+        transform: translateY(20px);
     }
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+@keyframes pulsar {
+    0%,100% {
+        box-shadow:
+            0 0 16px rgba(255,34,126,.45),
+            0 8px 23px rgba(255,27,110,.23);
+    }
+    50% {
+        box-shadow:
+            0 0 27px rgba(255,34,126,.7),
+            0 10px 29px rgba(255,27,110,.4);
+    }
+}
+
+@keyframes cintilar {
+    0%,100% {
+        opacity: .35;
+        transform: scale(.8);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.2);
     }
 }
 
@@ -244,43 +469,101 @@ body::after {
     }
 
     .pagina {
-        padding: 20px 12px;
+        padding: 17px 11px;
     }
 
     .painel {
-        padding: 24px 17px;
-        border-radius: 24px;
-        background: rgba(58,27,37,.68);
+        max-width: 440px;
+        padding: 27px 17px;
+        border-radius: 28px;
+        background: linear-gradient(
+            150deg,
+            rgba(94,37,51,.7),
+            rgba(54,17,30,.84),
+            rgba(94,37,51,.73)
+        );
+    }
+
+    .painel::before {
+        border-radius: 23px;
     }
 
     .logo {
-        width: 105px;
-        height: 105px;
+        width: 115px;
+        height: 115px;
+    }
+
+    .nome {
+        gap: 8px;
+    }
+
+    .nome-kb {
+        font-size: clamp(42px,12vw,60px);
+    }
+
+    .nome-lashes {
+        font-size: clamp(50px,13vw,67px);
     }
 
     .subtitulo {
-        letter-spacing: 2px;
         font-size: 10px;
+        letter-spacing: 2px;
+        gap: 8px;
+    }
+
+    .subtitulo::before,
+    .subtitulo::after {
+        width: 19px;
     }
 
     .beneficio {
-        padding: 4px;
         font-size: 10px;
+        padding: 5px;
+    }
+
+    .icone-beneficio {
+        width: 43px;
+        height: 43px;
+        font-size: 22px;
     }
 
     .botao {
-        min-height: 53px;
+        min-height: 69px;
+        padding: 10px 13px;
+    }
+
+    .botao-icone {
+        width: 35px;
+        font-size: 22px;
+    }
+
+    .botao-titulo {
+        font-size: 14px;
+    }
+
+    .botao-sub {
+        font-size: 8px;
+        letter-spacing: 1px;
+    }
+
+    .seta {
+        width: 29px;
+        height: 29px;
+        font-size: 20px;
     }
 
     .assinatura {
-        font-size: 27px;
+        font-size: 30px;
     }
 }
 
 @media(prefers-reduced-motion:reduce) {
-    .painel {
+    .painel,
+    .agendar,
+    .brilho {
         animation: none;
     }
+
     .botao {
         transition: none;
     }
@@ -292,6 +575,10 @@ body::after {
 <main class="pagina">
 <section class="painel">
 
+<span class="brilho brilho-1">✦</span>
+<span class="brilho brilho-2">✧</span>
+<span class="brilho brilho-3">✦</span>
+
 <img
     class="logo"
     src="/static/logo.png"
@@ -300,32 +587,38 @@ body::after {
 
 <h1 class="nome">
     <span class="nome-kb">KB</span>
-    <span class="nome-lashes">Lashes</span>
+    <span class="nome-lashes">Lashes♡</span>
 </h1>
 
 <p class="subtitulo">
-    Extensão de cílios<br>
-    Beleza feminina
+    <span>
+        Extensão de cílios<br>
+        Beleza feminina
+    </span>
 </p>
 
 <div class="beneficios">
+
     <div class="beneficio">
-        <span>💎</span>
+        <div class="icone-beneficio">💎</div>
         Vagas limitadas hoje
     </div>
 
     <div class="beneficio">
-        <span>🗓️</span>
+        <div class="icone-beneficio">🗓️</div>
         Realce seu olhar em minutos
     </div>
 
     <div class="beneficio">
-        <span>💗</span>
+        <div class="icone-beneficio">💗</div>
         Atendimento profissional
     </div>
+
 </div>
 
-<nav class="botoes">
+<nav class="botoes" aria-label="Links principais">
+
+<div class="coroa">♛</div>
 
 <a
     class="botao agendar"
@@ -333,15 +626,30 @@ body::after {
     target="_blank"
     rel="noopener noreferrer"
 >
-    🗓️ AGENDAR AGORA
+    <span class="botao-icone">🗓️</span>
+    <span class="botao-texto">
+        <span class="botao-titulo">AGENDAR AGORA</span>
+        <span class="botao-sub">Garanta seu horário</span>
+    </span>
+    <span class="seta">›</span>
 </a>
 
 <a class="botao servicos" href="/servicos">
-    ✨ VER SERVIÇOS
+    <span class="botao-icone">✨</span>
+    <span class="botao-texto">
+        <span class="botao-titulo">VER SERVIÇOS</span>
+        <span class="botao-sub">Conheça nossos procedimentos</span>
+    </span>
+    <span class="seta">›</span>
 </a>
 
 <a class="botao valores" href="/valores">
-    💎 VER VALORES
+    <span class="botao-icone">💎</span>
+    <span class="botao-texto">
+        <span class="botao-titulo">VER VALORES</span>
+        <span class="botao-sub">Veja nossos preços</span>
+    </span>
+    <span class="seta">›</span>
 </a>
 
 </nav>
@@ -360,7 +668,7 @@ body::after {
 """
 
 
-# PÁGINA DE VALORES ORIGINAL
+# PÁGINA DE VALORES
 @loja_bp.route("/valores")
 def valores():
     cards = [
@@ -396,9 +704,9 @@ def valores():
     for nome, descricao, preco in cards:
         conteudo += f"""
         <div class="card">
-            <h3>{nome}</h3>
-            <div class="desc">{descricao}</div>
-            <div class="preco">{preco}</div>
+            <h3>{escape(nome)}</h3>
+            <div class="desc">{escape(descricao)}</div>
+            <div class="preco">{escape(preco)}</div>
             <a href="{WHATSAPP}" class="botao">
                 Agendar
             </a>
@@ -410,7 +718,7 @@ def valores():
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Valores | KB Lashes</title>
 
 <style>
@@ -420,7 +728,7 @@ def valores():
 
 body {{
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: Arial,sans-serif;
     background: #0f0f0f;
     color: white;
 }}
