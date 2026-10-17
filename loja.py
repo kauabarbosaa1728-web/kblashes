@@ -1,6 +1,7 @@
 
 from flask import Blueprint
 from html import escape
+from urllib.parse import quote
 
 loja_bp = Blueprint("loja", __name__)
 
@@ -464,9 +465,7 @@ body::after {
     }
 }
 
-/* CELULARES */
 @media (max-width: 600px) {
-
     body::before {
         background-position: 69% center;
         background-size: cover;
@@ -614,9 +613,7 @@ body::after {
     }
 }
 
-/* CELULARES PEQUENOS */
 @media (max-width: 360px) {
-
     .painel {
         padding: 21px 12px;
     }
@@ -646,9 +643,7 @@ body::after {
     }
 }
 
-/* TELAS COM POUCA ALTURA */
 @media (max-height: 700px) and (max-width: 600px) {
-
     .pagina {
         align-items: flex-start;
         padding-top: 12px;
@@ -801,154 +796,848 @@ body::after {
 """
 
 
-# PÁGINA DE VALORES ORIGINAL
+# ==================================================
+# PÁGINA DE VALORES - DESIGN PREMIUM KB LASHES
+# ==================================================
+
 @loja_bp.route("/valores")
 def valores():
+
     cards = [
         (
+            "✦",
             "Designer de sobrancelhas",
-            "✨ Definição perfeita para o seu rosto",
+            "Definição perfeita para valorizar a beleza do seu rosto.",
             "R$ 40,00"
         ),
         (
+            "♡",
             "Hidra Gloss",
-            "💖 Lábios hidratados e com brilho natural",
+            "Lábios hidratados, macios e com brilho natural.",
             "R$ 25,00"
         ),
         (
+            "✧",
             "Extensão Brasileiro",
-            "🔥 Volume leve e natural",
+            "Volume leve e natural para realçar seu olhar.",
             "R$ 120,00"
         ),
         (
+            "♛",
             "Extensão Fox",
-            "👑 Efeito alongado e marcante",
+            "Efeito alongado, elegante e marcante.",
             "R$ 160,00"
         ),
         (
+            "❀",
             "Extensão Egípcio",
-            "🌸 Olhar sofisticado e elegante",
+            "Olhar sofisticado, delicado e cheio de personalidade.",
             "R$ 140,00"
         )
     ]
 
     conteudo = ""
 
-    for nome, descricao, preco in cards:
+    for i, (icone, nome, descricao, preco) in enumerate(cards, 1):
+
+        mensagem = quote(
+            f"Olá! Vim pelo site da KB Lashes e gostaria "
+            f"de agendar {nome}. Quais horários estão disponíveis?"
+        )
+
+        link = f"https://wa.me/5511964532697?text={mensagem}"
+
         conteudo += f"""
-        <div class="card">
-            <h3>{escape(nome)}</h3>
-            <div class="desc">{escape(descricao)}</div>
-            <div class="preco">{escape(preco)}</div>
-            <a href="{WHATSAPP}" class="botao">
-                Agendar
+        <article class="card">
+
+            <div class="card-topo">
+                <span class="numero">
+                    PROCEDIMENTO {i:02d}
+                </span>
+
+                <div class="icone">
+                    {escape(icone)}
+                </div>
+            </div>
+
+            <div class="card-conteudo">
+                <h3>{escape(nome)}</h3>
+
+                <p class="descricao">
+                    {escape(descricao)}
+                </p>
+            </div>
+
+            <div class="preco-area">
+                <span>INVESTIMENTO</span>
+
+                <strong>
+                    {escape(preco)}
+                </strong>
+            </div>
+
+            <a
+                class="agendar-card"
+                href="{escape(link, quote=True)}"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                ♡ AGENDAR PROCEDIMENTO
+                <span>›</span>
             </a>
-        </div>
+
+        </article>
         """
 
-    return f"""
-<!DOCTYPE html>
+    return f"""<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Valores | KB Lashes</title>
+<meta name="theme-color" content="#542b37">
+<meta name="description" content="Confira os procedimentos e valores da KB Lashes.">
+
+<title>Nossos Valores | KB Lashes</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Great+Vibes&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
+
 * {{
     box-sizing: border-box;
 }}
 
+html {{
+    scroll-behavior: smooth;
+}}
+
 body {{
     margin: 0;
-    font-family: Arial,sans-serif;
-    background: #0f0f0f;
-    color: white;
+    min-height: 100vh;
+    font-family: 'DM Sans', Arial, sans-serif;
+    color: #ffe9e3;
+    background: #542b37;
+    isolation: isolate;
+}}
+
+body::before {{
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+
+    background:
+        linear-gradient(
+            120deg,
+            rgba(43,13,25,.60),
+            rgba(66,25,40,.75)
+        ),
+        url('/static/fundo-luxo.jpg')
+        center/cover no-repeat;
+}}
+
+body::after {{
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+
+    background: radial-gradient(
+        ellipse at top,
+        rgba(255,164,184,.20),
+        transparent 75%
+    );
+
+    pointer-events: none;
+}}
+
+a {{
+    text-decoration: none;
 }}
 
 .topo {{
-    background: linear-gradient(90deg,#ff4da6,#ff1493);
-    padding: 30px;
     text-align: center;
-    font-size: 24px;
-    font-weight: bold;
-}}
-
-.sub {{
-    text-align: center;
-    margin: 15px;
-    color: #ccc;
-    font-size: 14px;
-}}
-
-.servicos {{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    padding: 20px;
-}}
-
-.card {{
-    background: #1a1a1a;
-    padding: 20px;
-    border-radius: 15px;
-    width: 260px;
-    box-shadow: 0 5px 20px rgba(0,0,0,.5);
-    text-align: center;
-    transition: .3s;
-}}
-
-.card:hover {{
-    transform: scale(1.05);
-}}
-
-.desc {{
-    font-size: 13px;
-    color: #bbb;
-    margin-bottom: 10px;
-}}
-
-.preco {{
-    color: #ff4da6;
-    font-weight: bold;
-    font-size: 20px;
-    margin: 10px 0;
-}}
-
-.botao {{
-    display: inline-block;
-    margin-top: 10px;
-    background: linear-gradient(90deg,#ff4da6,#ff1493);
-    color: white;
-    padding: 10px 15px;
-    border-radius: 10px;
-    text-decoration: none;
-    font-weight: bold;
+    padding: 28px 18px 48px;
 }}
 
 .voltar {{
-    display: block;
-    text-align: center;
-    color: #ff89bd;
-    margin: 25px auto;
-    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 13px 25px;
+    border-radius: 50px;
+
+    border: 1px solid rgba(255,214,201,.60);
+    background: rgba(73,25,42,.65);
+
+    color: #ffe4df;
+    font-size: 13px;
+    font-weight: 600;
+
+    transition: .3s;
 }}
+
+.voltar:hover {{
+    background: rgba(255,159,187,.25);
+    transform: translateY(-3px);
+}}
+
+.logo {{
+    display: block;
+
+    width: 115px;
+    height: 115px;
+
+    object-fit: cover;
+
+    margin: 35px auto 17px;
+    padding: 5px;
+
+    border-radius: 25px;
+
+    background: #ffe9e0;
+    border: 2px solid #fff1e7;
+
+    box-shadow:
+        0 0 30px rgba(255,165,183,.55),
+        0 12px 35px rgba(0,0,0,.25);
+}}
+
+.marca {{
+    margin: 0;
+
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(40px,6vw,60px);
+    font-weight: 500;
+
+    color: #ffe9df;
+}}
+
+.marca span {{
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.3em;
+    font-weight: 400;
+
+    color: #ff9cba;
+}}
+
+.etiqueta {{
+    display: inline-block;
+
+    margin-top: 24px;
+    padding: 10px 20px;
+
+    border-radius: 50px;
+
+    border: 1px solid rgba(255,198,192,.50);
+    background: rgba(255,160,186,.13);
+
+    color: #ffd5dc;
+
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}}
+
+.titulo {{
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(35px,5vw,55px);
+    font-weight: 500;
+
+    margin: 20px 0 12px;
+
+    color: #fff0e7;
+}}
+
+.subtitulo {{
+    max-width: 560px;
+    margin: auto;
+
+    color: #f8d6d6;
+
+    font-size: 15px;
+    line-height: 1.8;
+}}
+
+.ornamento {{
+    margin-top: 23px;
+    color: #ffb8c8;
+    font-size: 25px;
+}}
+
+.container {{
+    width: min(1160px, calc(100% - 36px));
+    margin: 0 auto;
+}}
+
+.cabecalho {{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+
+    padding-bottom: 18px;
+    margin-bottom: 25px;
+
+    border-bottom: 1px solid rgba(255,207,199,.3);
+}}
+
+.cabecalho h2 {{
+    margin: 0;
+
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 27px;
+    font-weight: 500;
+}}
+
+.quantidade {{
+    padding: 10px 16px;
+    border-radius: 30px;
+
+    background: rgba(255,177,192,.13);
+    border: 1px solid rgba(255,213,202,.3);
+
+    color: #ffcfda;
+    font-size: 12px;
+}}
+
+.grade {{
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0,1fr));
+    gap: 23px;
+}}
+
+.card {{
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+
+    min-width: 0;
+    padding: 27px 23px 23px;
+
+    border-radius: 29px;
+
+    border: 1px solid rgba(255,209,194,.65);
+
+    background: linear-gradient(
+        150deg,
+        rgba(125,53,72,.78),
+        rgba(59,20,36,.92)
+    );
+
+    box-shadow:
+        0 17px 45px rgba(26,6,17,.32),
+        inset 0 0 20px rgba(255,194,185,.08);
+
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+
+    transition:
+        transform .3s,
+        box-shadow .3s;
+
+    overflow: hidden;
+}}
+
+.card::before {{
+    content: "";
+
+    position: absolute;
+    top: -60px;
+    right: -60px;
+
+    width: 150px;
+    height: 150px;
+
+    background: radial-gradient(
+        circle,
+        rgba(255,187,195,.19),
+        transparent 70%
+    );
+
+    pointer-events: none;
+}}
+
+.card:hover {{
+    transform: translateY(-8px);
+
+    box-shadow:
+        0 25px 55px rgba(26,6,17,.45),
+        0 0 27px rgba(255,157,183,.25);
+}}
+
+.card-topo {{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 27px;
+}}
+
+.numero {{
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.7px;
+
+    color: #ffc5d0;
+}}
+
+.icone {{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 53px;
+    height: 53px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(255,207,195,.7);
+    background: rgba(255,179,194,.15);
+
+    color: #ffd7bd;
+    font-size: 29px;
+
+    box-shadow: 0 0 18px rgba(255,164,185,.25);
+}}
+
+.card-conteudo {{
+    flex: 1;
+}}
+
+.card h3 {{
+    margin: 0 0 15px;
+
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 26px;
+    font-weight: 500;
+
+    color: #fff0e8;
+
+    line-height: 1.3;
+}}
+
+.descricao {{
+    min-height: 60px;
+    margin: 0;
+
+    color: #f4d1d0;
+
+    font-size: 13px;
+    line-height: 1.8;
+}}
+
+.preco-area {{
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+
+    margin: 23px 0;
+    padding-top: 22px;
+
+    border-top: 1px solid rgba(255,211,201,.3);
+}}
+
+.preco-area span {{
+    color: #ffc3cf;
+
+    font-size: 10px;
+    letter-spacing: 2px;
+    font-weight: 700;
+}}
+
+.preco-area strong {{
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 39px;
+    font-weight: 500;
+
+    color: #ffb5ce;
+
+    text-shadow: 0 0 17px rgba(255,125,169,.25);
+}}
+
+.agendar-card {{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    min-height: 57px;
+    padding: 12px;
+
+    border-radius: 50px;
+
+    background: linear-gradient(
+        90deg,
+        #ff4a99,
+        #fa187f
+    );
+
+    color: white;
+
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .3px;
+
+    box-shadow:
+        0 0 20px rgba(255,39,125,.4),
+        0 9px 22px rgba(255,31,115,.25);
+
+    transition: .25s;
+}}
+
+.agendar-card span {{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 25px;
+    height: 25px;
+
+    border: 1px solid rgba(255,255,255,.7);
+    border-radius: 50%;
+
+    font-size: 20px;
+}}
+
+.agendar-card:hover {{
+    transform: translateY(-3px);
+    box-shadow: 0 0 30px rgba(255,39,125,.65);
+}}
+
+.agendar-card:focus-visible,
+.voltar:focus-visible,
+.cta-botao:focus-visible {{
+    outline: 3px solid white;
+    outline-offset: 4px;
+}}
+
+.cta {{
+    max-width: 760px;
+
+    margin: 70px auto 45px;
+    padding: 42px 25px;
+
+    text-align: center;
+
+    border-radius: 32px;
+    border: 1px solid rgba(255,206,194,.65);
+
+    background: linear-gradient(
+        140deg,
+        rgba(127,54,74,.82),
+        rgba(57,18,34,.92)
+    );
+
+    box-shadow: 0 18px 50px rgba(28,6,16,.35);
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}}
+
+.cta h2 {{
+    margin: 12px 0 15px;
+
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(27px,4vw,40px);
+    font-weight: 500;
+}}
+
+.cta p {{
+    margin: 0 0 27px;
+
+    color: #f9d6d6;
+
+    font-size: 14px;
+    line-height: 1.9;
+}}
+
+.cta-botao {{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: min(100%,390px);
+    min-height: 59px;
+
+    padding: 15px 22px;
+    border-radius: 50px;
+
+    background: linear-gradient(
+        90deg,
+        #ffc5d1,
+        #fa92af
+    );
+
+    color: #763449;
+
+    font-weight: 700;
+    font-size: 13px;
+
+    box-shadow: 0 9px 27px rgba(255,137,173,.25);
+
+    transition: .25s;
+}}
+
+.cta-botao:hover {{
+    transform: translateY(-3px);
+}}
+
+.rodape {{
+    text-align: center;
+
+    padding: 20px 15px 38px;
+
+    color: #f4c9d0;
+    font-size: 12px;
+}}
+
+.assinatura {{
+    font-family: 'Great Vibes', cursive;
+    font-size: 34px;
+
+    color: #ffd5d7;
+
+    margin-bottom: 9px;
+}}
+
+/* TABLETS */
+
+@media(max-width:950px) {{
+
+    .grade {{
+        grid-template-columns: repeat(2,minmax(0,1fr));
+    }}
+
+}}
+
+/* CELULARES */
+
+@media(max-width:600px) {{
+
+    body::before {{
+        background-position: 65% center;
+    }}
+
+    .topo {{
+        padding: 20px 13px 35px;
+    }}
+
+    .logo {{
+        width: 100px;
+        height: 100px;
+        margin-top: 27px;
+    }}
+
+    .marca {{
+        font-size: 41px;
+    }}
+
+    .titulo {{
+        font-size: 37px;
+    }}
+
+    .subtitulo {{
+        font-size: 13px;
+        padding: 0 8px;
+    }}
+
+    .etiqueta {{
+        font-size: 9px;
+        letter-spacing: 1.3px;
+    }}
+
+    .container {{
+        width: calc(100% - 26px);
+    }}
+
+    .cabecalho h2 {{
+        font-size: 22px;
+    }}
+
+    .quantidade {{
+        font-size: 10px;
+        padding: 8px 11px;
+        white-space: nowrap;
+    }}
+
+    .grade {{
+        grid-template-columns: 1fr;
+        gap: 19px;
+    }}
+
+    .card {{
+        padding: 24px 21px;
+        border-radius: 27px;
+    }}
+
+    .card-topo {{
+        margin-bottom: 21px;
+    }}
+
+    .card h3 {{
+        font-size: 26px;
+    }}
+
+    .descricao {{
+        min-height: auto;
+    }}
+
+    .preco-area {{
+        margin: 21px 0;
+    }}
+
+    .preco-area strong {{
+        font-size: 38px;
+    }}
+
+    .agendar-card {{
+        min-height: 59px;
+        font-size: 12px;
+    }}
+
+    .cta {{
+        margin: 45px auto 32px;
+        padding: 32px 19px;
+        border-radius: 27px;
+    }}
+
+    .cta h2 {{
+        font-size: 30px;
+    }}
+
+}}
+
+@media(max-width:360px) {{
+
+    .card {{
+        padding: 21px 17px;
+    }}
+
+    .agendar-card {{
+        font-size: 10px;
+    }}
+
+    .marca {{
+        font-size: 35px;
+    }}
+
+}}
+
+@media(prefers-reduced-motion:reduce) {{
+
+    *,
+    *::before,
+    *::after {{
+        transition: none !important;
+        scroll-behavior: auto !important;
+    }}
+
+}}
+
 </style>
 </head>
 
 <body>
-<div class="topo">💰 Nossos Valores</div>
 
-<div class="sub">
-    ✨ Realce seu olhar com qualidade e profissionalismo 💖
-</div>
+<header class="topo">
 
-<div class="servicos">
-    {conteudo}
-</div>
+    <a class="voltar" href="/">
+        ← Voltar ao início
+    </a>
 
-<a href="/" class="voltar">← Voltar ao início</a>
+    <img
+        class="logo"
+        src="/static/logo.png"
+        alt="Logo KB Lashes"
+    >
+
+    <h1 class="marca">
+        KB <span>Lashes♡</span>
+    </h1>
+
+    <div class="etiqueta">
+        ♡ Beleza, cuidado e sofisticação
+    </div>
+
+    <h2 class="titulo">
+        Nossos Valores
+    </h2>
+
+    <p class="subtitulo">
+        Sua beleza merece um cuidado especial.
+        Conheça nossos procedimentos e escolha
+        o seu próximo momento de autoestima.
+    </p>
+
+    <div class="ornamento">
+        ✧ ♡ ✧
+    </div>
+
+</header>
+
+<main class="container">
+
+    <div class="cabecalho">
+
+        <h2>
+            Nossos Procedimentos
+        </h2>
+
+        <span class="quantidade">
+            {len(cards)} opções
+        </span>
+
+    </div>
+
+    <section class="grade" aria-label="Lista de procedimentos">
+        {conteudo}
+    </section>
+
+    <section class="cta">
+
+        <div class="ornamento">
+            ♡
+        </div>
+
+        <h2>
+            Seu momento de brilhar chegou!
+        </h2>
+
+        <p>
+            Escolha o procedimento ideal para você
+            e entre em contato para agendar seu horário.
+            Será um prazer cuidar da sua beleza!
+        </p>
+
+        <a
+            href="{WHATSAPP}"
+            class="cta-botao"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            ♡ FALAR COM A KB LASHES →
+        </a>
+
+    </section>
+
+</main>
+
+<footer class="rodape">
+
+    <div class="assinatura">
+        Mais que cílios, autoestima ♡
+    </div>
+
+    KB Lashes Beauty
+
+</footer>
+
 </body>
 </html>
 """
